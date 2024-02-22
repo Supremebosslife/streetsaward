@@ -1,0 +1,53 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% include 'logo.html' %}
+{% block content %}
+<style>
+    .forgot-password-link,
+    .registration-link {
+        display: block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .forgot-password-link {
+        color: black;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    .registration-link {
+        background-color: black;
+        color: #FAF9D0;
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+        width: 250px;
+        margin: 0 auto;
+        margin-top: 15px;
+
+    }
+</style>
+
+<h2>Login</h2>
+<form method="post" action="{% url 'custom-login' %}">
+    {% csrf_token %}
+    {% if form.errors %}
+        <p class="error-message">Email or password invalid, please check details and try again</p>
+    {% endif %}
+    <label for="{{ form.username.id_for_label }}">Email:</label>
+    {{ form.username }}
+    {% for error in form.username.errors %}
+    <p class="error-message">{{ error }}</p>
+    {% endfor %}
+
+    <label for="{{ form.password.id_for_label }}">Password:</label>
+    {{ form.password }}
+    {% for error in form.password.errors %}
+        <p class="error-message">{{ error }}</p>
+    {% endfor %}
+    <button type="submit">Login</button>
+</form>
+<a href="{% url 'password_reset' %}" class="forgot-password-link">Forgot Password? Reset</a>
+<a href="{% url 'signup' %}" class="registration-link">Don't have an account? Register</a>
+{% endblock %}

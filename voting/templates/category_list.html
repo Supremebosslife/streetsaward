@@ -1,0 +1,91 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+{% include 'logo.html' %}
+<style>
+        body {
+            background-color: #f7f7f4; /* White background */
+            color: #000000; /* Black text */
+        }
+
+        header {
+            background-color: #f7f7f4;
+            color: #FFFFFF; /* White text */
+            padding: 2px;
+            text-align: center;
+        }
+
+        header p {
+            color: #FFFFFF; 
+            font-family: 'Cambria', cursive; /* Curvy font */
+            font-size: 18px; /* Adjust the font size as needed */
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            max-height: 70px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .category-row {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto; /* Center the row */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+        }
+
+        .category-item {
+            text-align: center;
+            width: 33%; /* Set the width to 48% to fit two items on each row */
+            margin-bottom: 20px; /* Adjust margin for spacing between rows */
+        }   
+        .category-icon {
+            font-size: 48px;
+            margin: 10px;
+            color: #000000; /* Royal Blue color for icons */
+        }
+
+        h2 {
+            text-align: center; /* Center the "Select Category to Vote" text */
+        }
+
+
+        /* Add any additional styles as needed */
+    </style>
+{% block content %}
+    <h1>Choose Category to View Result</h1>
+    <div class="category-container">
+        <div class="category-row">
+            {% for category in categories %}
+                <div class="category-item">
+                    <a href="{% url 'voting_resultpage' slug=category.slug %}">
+                        <i class="{{ category.icon }} category-icon" title="{{ category.name }}"></i>
+                        <p>{{ category.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+   {% include 'bottom_bar.html' with categories=categories %}
+{% endblock %}

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Stylesheet for the suggested color theme -->
+    <style>
+        body {
+            background-color: #f7f7f4; /* White background */
+            color: #000000; /* Black text */
+        }
+
+        header {
+            background-color: #f7f7f4;
+            color: #FFFFFF; /* White text */
+            padding: 2px;
+            text-align: center;
+        }
+
+        header p {
+            color: #FFFFFF; 
+            font-family: 'Cambria', cursive; /* Curvy font */
+            font-size: 18px; /* Adjust the font size as needed */
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            max-height: 70px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .category-row {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto; /* Center the row */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+        }
+
+        .category-item {
+            text-align: center;
+            width: 48%; /* Set the width to 48% to fit two items on each row */
+            margin-bottom: 20px; /* Adjust margin for spacing between rows */
+        }   
+        .category-icon {
+            font-size: 48px;
+            margin: 10px;
+            color: #AD8003; /* Royal Blue color for icons */
+        }
+
+        .category-container1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .category-row1 {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto; /* Center the row */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+        }
+
+        .category-item1 {
+            text-align: center;
+            width: 48%; /* Set the width to 48% to fit two items on each row */
+            margin-bottom: 20px; /* Adjust margin for spacing between rows */
+        }   
+        .category-icon1 {
+            font-size: 48px;
+            margin: 10px;
+            color: #000000; /* Royal Blue color for icons */
+        }
+
+        h2 {
+            text-align: center;
+            color: #AD8003
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: flex-end; /* Align menu to the right */
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            color: #AD8003;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 70px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown content to the right */
+        }
+
+        .dropdown-content a {
+            color: #AD8003;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left; /* Align text to the left within dropdown items */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <!-- Logo on the left -->
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="StreetsAward Logo">
+        </div>
+
+        <!-- Menu on the right -->
+        <div class="menu-container">
+            <div class="dropdown">
+                <i class="fas fa-bars menu-icon"></i>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}">Profile</a>
+                        <a href="{% url 'custom-logout' %}">Logout</a>
+                        <a href="{% url 'about_us' %}">About Us</a>
+                    {% else %}
+                        <a href="{% url 'custom-login' %}">Login</a>
+                        <a href="{% url 'signup' %}">Signup</a>
+                        <a href="{% url 'about_us' %}">About Us</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+    <!-- Clickable Flyer -->
+    <a href="{% url 'category_vote' 'football' %}">
+        <img src="{% static 'images/football1.png' %}" alt="Clickable Flyer" style="max-width: 100%; height: auto;">
+    </a>
+    <main>
+        {% if user.is_authenticated %}
+        <hr>
+        <h2>Select Category to Vote:</h2>
+        <div class="category-container">
+            <div class="category-row">
+                {% for category in categories %}
+                    <div class="category-item">
+                        <a href="{% url 'category_vote' category.slug %}">
+                            <i class="{{ category.icon }} category-icon" title="{{ category.name }}"></i>
+                            <p>{{ category.name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <h2>Choose Category to View Result</h2>
+    <div class="category-container1">
+        <div class="category-row1">
+            {% for category in categories %}
+                <div class="category-item1">
+                    <a href="{% url 'voting_resultpage' slug=category.slug %}">
+                        <i class="{{ category.icon }} category-icon1" title="{{ category.name }}"></i>
+                        <p>{{ category.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+            {% block anonymous_content %}
+                {% include 'anonymous_base.html' %}
+            {% endblock %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+        {% include 'bottom_bar.html' with categories=categories %}
+                    <hr>
+        <div>
+        <!-- Football -->
+        <h2>A Journey Through the Beats and Courts: Exploring the Rich Histories of Football, Tennis, Basketball, and Music Genres</h2>
+        <p>Introduction...</p>
+        <h3>Football: The Beautiful Game</h3>
+        <p><strong>Origins</strong></p>
+        <p>Legend has it that the roots of football trace back to ancient civilizations, where various forms of ball games were played across cultures. However, it was in medieval Europe that the sport began to take shape, with crude versions played in towns and villages as a test of strength and skill.</p>
+        <p><strong>Evolution</strong></p>
+        <p>As centuries passed, football evolved from a rough-and-tumble pastime to a structured sport with standardized rules. England played a pivotal role in shaping modern football, establishing the Football Association in 1863 and codifying the rules of the game. From there, football spread like wildfire, captivating hearts across continents and cultures.</p>
+        <p><strong>Global Phenomenon</strong></p>
+        <p>Today, football stands as the world's most popular sport, boasting an estimated 4 billion passionate fans worldwide. From the electric atmosphere of packed stadiums to the drama of the World Cup stage, football continues to unite nations and transcend borders like no other.</p>
+
+        <h3>Tennis: A Symphony of Swings</h3>
+        <p><strong>Origins</strong></p>
+        <p>Tennis, like football, has ancient origins that can be traced back to various cultures throughout history. The game as we know it today, however, found its footing in 19th-century England, where it was played primarily by the aristocracy as a leisurely pastime.</p>
+        <p><strong>Evolution</strong></p>
+        <p>As tennis gained popularity, it underwent significant transformations, transitioning from indoor courts to outdoor surfaces like grass, clay, and hardcourt. The establishment of organized tournaments and governing bodies further propelled the sport into the limelight, culminating in the creation of the prestigious Grand Slam events.</p>
+        <p><strong>Enduring Legacy</strong></p>
+        <p>From the graceful elegance of Wimbledon to the fierce competition of the US Open, tennis continues to capture the imagination of fans around the globe. With iconic rivalries, legendary champions, and unforgettable moments, tennis stands as a testament to the enduring power of sport to inspire and unite.</p>
+
+        <h3>Basketball: Hoops and Dreams</h3>
+        <p><strong>Origins</strong></p>
+        <p>Unlike football and tennis, basketball is a relatively young sport, born in the halls of a Springfield, Massachusetts YMCA in 1891. Conceived by Dr. James Naismith as a way to keep his students active during the winter months, basketball quickly caught on, spreading to colleges and communities across the United States.</p>
+        <p><strong>Evolution</strong></p>
+        <p>From its humble beginnings, basketball underwent rapid evolution, with rules and strategies evolving to accommodate the athleticism and skill of its players. The creation of professional leagues like the NBA in 1946 elevated basketball to new heights, introducing iconic teams, players, and rivalries that captured the imagination of fans worldwide.</p>
+        <p><strong>Global Appeal</strong></p>
+        <p>Today, basketball stands as one of the most popular sports on the planet, with leagues and fans spanning continents. From the fast-paced action of the NBA to the passion of international competitions like the Olympics, basketball continues to inspire and unite people of all backgrounds with its universal language of hoops and dreams.</p>
+
+        <h3>Hip Hop, RnB, and Afrobeat: The Soundtrack of Culture</h3>
+        <p><strong>Hip Hop: From the Bronx to the World</strong></p>
+        <p>Emerging from the streets of New York City in the 1970s, hip hop was more than just a genre of music—it was a cultural movement. Rooted in the creativity and resilience of marginalized communities, hip hop gave voice to the voiceless, addressing social issues and celebrating urban life through beats, rhymes, and graffiti art.</p>
+        <p><strong>RnB: The Heart and Soul of Music</strong></p>
+        <p>Rhythm and blues, or RnB, has its roots in the African American musical traditions of the early 20th century. With its smooth melodies and heartfelt lyrics, RnB became the soundtrack of love and longing, influencing generations of artists and capturing the essence of the human experience.</p>
+        <p><strong> Afrobeat: The Pulse of Africa</strong></p>
+        <p>Born in Nigeria in the late 1960s, Afrobeat is a fusion of traditional African rhythms, jazz, funk, and highlife music. Spearheaded by the legendary Fela Kuti, Afrobeat served as a powerful tool for social and political activism, challenging corruption and oppression while celebrating the rich cultural heritage of the continent.</p>
+    </div>
+    </main>
+
+</body>
+
+</html>

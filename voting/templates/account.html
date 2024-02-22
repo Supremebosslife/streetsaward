@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% include 'logo.html' %}
+{% block content %}
+<h2>User Account</h2>
+
+<div>
+    <button onclick="location.href='{% url 'profile' %}'">Profile</button>
+    <button onclick="location.href='{% url 'recent_votes' %}'">Recent Voting Table</button>
+    <button onclick="location.href='{% url 'password_reset' %}'">Reset Password</button>
+    <button onclick="location.href='{% url 'logout' %}'">Logout</button>
+    <button onclick="location.href='{% url 'delete_account' %}'">Delete Account</button>
+</div>
+{% include 'bottom_bar.html' with categories=categories %}
+{% endblock %}

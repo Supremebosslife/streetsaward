@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% include 'logo.html' %}
+{% block title %}
+    <h1>User Profile</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <!-- Add more details about the user as needed -->
+    
+    <div class="user-details">
+        <p class="detail-item"><span class="detail-label">Email:</span> <span class="detail-value">{{ user.email }}</span></p>
+        <!-- Add more user details as needed -->
+
+        <div class="separator"></div>
+
+        <div class="profile-buttons">
+            <a href="{% url 'recent_votes' %}" class="profile-button">Recent Votes</a>
+            <a href="{% url 'password_change' %}" class="profile-button">Change Password</a>
+            <a href="{% url 'delete_account' %}" class="profile-button">Delete Account</a>
+            <a href="#" onclick="confirmLogout()" class="profile-button">Logout</a>
+        </div>
+    </div>
+
+    {% include 'bottom_bar.html' with categories=categories %}
+{% endblock %}
+
+<script>
+    function confirmLogout() {
+        var confirmation = confirm("Are you sure you want to log out?");
+        if (confirmation) {
+            // If the user clicks 'OK' in the confirmation dialog, redirect to the logout URL
+            window.location.href = "{% url 'custom-logout' %}";
+        } else {
+            // If the user clicks 'Cancel', do nothing
+            // You can add additional handling here if needed
+        }
+    }
+</script>

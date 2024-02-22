@@ -1,0 +1,139 @@
+{% load static %}
+
+{% block content %}
+    <h2>{{ category.name }} GOAT Nominees</h2>
+
+    <div class="nominee-container">
+        {% for nominee in nominees %}
+            <div class="nominee" onclick="selectNominee('{{ nominee.nominee_name }}')">
+                <img src="{{ nominee.image.url }}" alt="{{ nominee.nominee_name }}" class="nominee-img">
+                <p class="nominee-name">{{ nominee.nominee_name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="get" action="{% url 'congratulations' %}" onsubmit="return confirmVote()">
+        {% csrf_token %}
+
+        <input type="hidden" name="selected_nominee" id="selected_nominee" value="">
+        
+        <div class="vote-now-container">
+            <button type="submit" class="vote-now-button">Vote Now</button>
+        </div>
+    </form>
+
+    <style>
+        body {
+            background-image: url('{% static 'images/background.jpg' %}');
+            background-size: cover;
+            background-color: rgba(255, 255, 255, 3.0); /* Adjust alpha value for background transparency */
+            color: #FFFFFF; /* Set text color to white */
+            text-align: center;
+        }
+
+        .nominee-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .nominee {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 45%; /* Ensure each nominee takes up 45% of the width */
+            cursor: pointer;
+        }
+
+        .nominee-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .nominee-name {
+            background-color: #000000; /* Black background for the name */
+            color: #FFFFFF; /* White text for the name */
+            padding: 15px;
+            margin: 0; /* Remove default margin */
+        }
+
+        .vote-now-container {
+            margin-top: 20px;
+        }
+
+        .vote-now-button {
+            background-color: #AD8003; /* Set button color to AD8003 */
+            color: #FFFFFF; /* Set text color to white */
+            padding: 20px; /* Increase padding for a bigger button */
+            border: none;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+
+        .selected {
+            border: 2px solid #AD8003; /* Border color for selected nominee */
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        let selectedNominee = '';
+
+        function selectNominee(player) {
+            // Remove the 'selected' class from all nominees
+            let nominees = document.querySelectorAll('.nominee');
+            nominees.forEach(nominee => nominee.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked nominee
+            document.querySelector(`[onclick="selectNominee('${player}')"]`).classList.add('selected');
+
+            // Set the selected nominee
+            selectedNominee = player;
+            document.getElementById('selected_nominee').value = selectedNominee;
+        }
+
+        function confirmVote() {
+            if (!selectedNominee) {
+                alert("Please select a nominee before voting.");
+                return false;  // Prevent the form submission
+            }
+
+            return confirm("Are you sure of the {{ category.name }} GOAT you have selected? You can only vote once!");
+        }
+
+        function submitVote() {
+            if (!confirmVote()) {
+                return;
+            }
+
+        }
+
+        var userHasVoted = {{ user_has_voted|yesno:"true,false" }};
+        var categorySlug = "{{ category_slug }}";
+
+        if (userHasVoted) {
+            // Display a popup or alert
+            var confirmation = confirm("You have already voted. View results?");
+            if (confirmation) {
+                // Redirect to the voting result page
+                window.location.href = "/voting_resultpage/" + categorySlug + "/";
+            } else {
+                // Handle other scenarios or do nothing
+            }
+        }
+
+        {% if messages %}
+            {% for message in messages %}
+                // Display error message in a popup
+                alert("{{ message }}");
+
+                // Redirect to the result page
+                window.location.href = "{% url 'voting_resultpage' category.slug %}";
+            {% endfor %}
+        {% endif %}
+    </script>
+
+    {% include 'bottom_bar.html' with categories=categories %}
+{% endblock %}

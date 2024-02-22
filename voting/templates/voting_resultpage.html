@@ -1,0 +1,89 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% include 'logo.html' %}
+
+{% block title %}
+    <h1 style="text-align: center;">{{ category.name }} GOAT Result</h1>
+{% endblock %}
+
+{% block content %}
+    <hr style="margin-top: 20px; margin-bottom: 20px;">
+
+    <div class="category-container">
+        <div class="category-row">
+            <h2 style="font-size: 24px; font-weight: bold; font-family: 'Your Special Font';">Total Votes</h2>
+            <ul style="list-style-type: none; padding: 0;">
+                {% for nominee in total_votes %}
+                    <li style="font-size: 18px; font-weight: bold; font-family: 'Your Special Font';">
+                        {{ nominee.nominee_name }}: {{ nominee.total_votes }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <hr style="margin-top: 20px; margin-bottom: 20px;">
+
+    <h3 style="font-size: 20px; font-weight: bold; font-family: 'Your Special Font';">
+        Share this result for others to see and get to vote!
+    </h3>
+    <!-- Share buttons for Facebook and Twitter -->
+    <div class="share-links">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer">
+            Share on Facebook
+        </a>
+        |
+        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=See who's leading in the {{ category.name }} GOAT voting!" target="_blank" rel="noopener noreferrer">
+            Share on Twitter
+        </a>
+    </div>
+
+    <a href="{% url 'home' %}" class="registration-link">Return to Home</a>
+
+   {% include 'bottom_bar.html' with categories=categories %}
+            <hr>
+   <div>
+        <!-- Football -->
+        <h2>Past Legends In Sports And Entertainment</h2>
+
+        <h3>Football</h3>
+        <p><strong>1. Pelé (Edson Arantes do Nascimento)</strong></p>
+        <p>Regarded as one of the greatest footballers of all time, Pelé mesmerized the world with his extraordinary skills and knack for scoring goals. Hailing from Brazil, he won three FIFA World Cups (1958, 1962, 1970) and scored over 1,000 career goals, cementing his status as a football icon.</p>
+        <p><strong>2. Diego Maradona</strong></p>
+        <p>Known for his exceptional dribbling ability and controversial "Hand of God" goal, Diego Maradona left an indelible mark on football. The Argentine superstar led his country to victory in the 1986 FIFA World Cup, showcasing his unparalleled talent and flair on the pitch.</p>
+
+        <h3>Tennis</h3>
+        <p><strong>1. Björn Borg</strong></p>
+        <p>Björn Borg, the Swedish tennis sensation, dominated the sport in the late 1970s with his remarkable athleticism and cool demeanor. He won 11 Grand Slam titles, including five consecutive Wimbledon championships, captivating audiences with his stylish play and iconic headband.</p>
+        <p><strong>2. Martina Navratilova</strong></p>
+        <p>Martina Navratilova revolutionized women's tennis with her aggressive style of play and unmatched versatility. The Czech-American star won 18 Grand Slam singles titles and a staggering 31 Grand Slam doubles titles, establishing herself as one of the greatest tennis players of all time.</p>
+
+        <h3>Basketball</h3>
+        <p><strong>1. Michael Jordan</strong></p>
+        <p>Michael Jordan, often referred to as "His Airness," redefined the game of basketball with his unparalleled athleticism and competitive spirit. The six-time NBA champion and five-time MVP captivated fans around the world with his gravity-defying dunks and clutch performances, solidifying his status as the greatest basketball player of all time.</p>
+        <p><strong>2. Bill Russell</strong></p>
+        <p>Bill Russell, a towering figure in basketball history, led the Boston Celtics to an unprecedented 11 NBA championships during his illustrious career. Renowned for his defensive prowess and leadership on the court, Russell set the standard for excellence in the sport and paved the way for future generations of players.</p>
+
+        <h3>Hip Hop</h3>
+        <p><strong>1. Tupac Shakur (2Pac)</strong></p>
+        <p>Tupac Shakur, also known by his stage name 2Pac, was a seminal figure in the world of hip hop. As a rapper, actor, and social activist, he used his music to address issues of social injustice, poverty, and racial inequality. Tupac's raw lyricism and powerful storytelling continue to resonate with audiences worldwide.</p>
+        <p><strong>2. The Notorious B.I.G. (Biggie Smalls)</strong></p>
+        <p>The Notorious B.I.G., or Biggie Smalls, emerged as one of the most influential rappers of the 1990s. With his distinctive flow and vivid storytelling, he chronicled the struggles and triumphs of life in inner-city America. Biggie's impact on hip hop culture is immeasurable, and his legacy lives on through his timeless music.</p>
+
+        <h3>RnB</h3>
+        <p><strong>1. Aretha Franklin</strong></p>
+        <p>Aretha Franklin, often referred to as the "Queen of Soul," was a pioneering figure in RnB music. With her powerhouse vocals and emotive delivery, she delivered timeless classics like "Respect" and "Natural Woman," earning her multiple Grammy Awards and universal acclaim as one of the greatest singers of all time.</p>
+        <p><strong>2. Marvin Gaye</strong></p>
+        <p>Marvin Gaye, the soulful crooner from Motown, left an indelible mark on RnB music with his smooth voice and socially conscious lyrics. From romantic ballads to poignant protest songs, Gaye's music transcended genres and inspired generations of artists with its timeless appeal.</p>
+
+        <h3>Afrobeat</h3>
+        <p><strong>1. Fela Kuti/strong></p>
+        <p>Fela Kuti, the Nigerian musical pioneer, revolutionized the sound of Afrobeat with his fusion of traditional African rhythms and politically charged lyrics. A fearless critic of corruption and oppression, Fela used his music as a weapon for social change, earning him a devoted following and enduring legacy as a cultural icon.</p>
+        <p><strong>2. Miriam Makeba (Mama Africa)</strong></p>
+        <p>Miriam Makeba, affectionately known as Mama Africa, was a trailblazing figure in Afrobeat music. With her enchanting voice and charismatic stage presence, she brought the sounds of South Africa to the world stage, advocating for justice and equality through her music and activism.</p>
+    <div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<style>
+    .success-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .login-button {
+        display: inline-block;
+        background-color: #AD8003;
+        color: #FFFFFF;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+{% include 'logo.html' %}
+{% block content %}
+    <div class="success-container">
+        <h2>Registration Successful</h2>
+        <p>Your registration was successful.</p>
+        <p>Please press login button below to vote and view results.</p>
+        <a href="{% url 'custom-login' %}" class="login-button">Login</a>
+    </div>
+{% endblock %}

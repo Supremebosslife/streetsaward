@@ -1,0 +1,64 @@
+<!-- about_us.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            background-color: #FAF9D0;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: #AD8003;
+            border: 2px solid #AD8003;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>About Us</h1>
+    <p>Select any of the items below to read:</p>
+
+    <a href="{% url 'privacy_policy' %}">Privacy policy</a>
+    <a href="{% url 'terms_and_conditions' %}">Terms and Conditions</a>
+
+    <br>
+
+    <a href="{% url 'accessibility_policy' %}">Accessibility Policy</a>
+    <a href="{% url 'security_policy' %}">Security Policy</a>
+
+    <br>
+
+    <a href="{% url 'user_agreement' %}">User Agreement</a>
+    <a href="{% url 'community_guidelines' %}">Community Guidelines</a>
+
+    <br>
+
+    <a href="{% url 'dmca_policy' %}">DMCA Policy</a>
+    <a href="{% url 'cookie_policy' %}">Cookie Policy</a>
+
+    <p>Contact Us: <a href="mailto:enquiries@streetsaward.com">enquiries@streetsaward.com</a></p>
+</body>
+
+</html>

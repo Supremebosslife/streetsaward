@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'static/css/styles.css' %}">
+
+
+
+
+
+{% block content %}
+<h2>Delete Account</h2>
+
+<p>Are you sure you want to delete your account?</p>
+
+<form method="post" action="{% url 'delete_account' %}">
+    {% csrf_token %}
+    <button type="submit">Yes, delete my account</button>
+</form>
+{% endblock %}
