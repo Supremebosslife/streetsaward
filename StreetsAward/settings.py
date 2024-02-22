@@ -84,7 +84,10 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': 'app-4e254123-e543-4faf-a56a-28d10697dba0-do-user-15871549-0.c.db.ondigitalocean.com',
         'PORT': '25060',
-        'sslmode': 'require',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': '/ca-certificate.crt/',
+        }
     }
 }
 
