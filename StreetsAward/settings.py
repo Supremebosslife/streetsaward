@@ -79,11 +79,12 @@ WSGI_APPLICATION = 'StreetsAward.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres', 
-        'USER': 'streetsaward', 
+        'NAME': 'sadatabase', 
+        'USER': 'sadatabase', 
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': 'app-4e254123-e543-4faf-a56a-28d10697dba0-do-user-15871549-0.c.db.ondigitalocean.com',
+        'PORT': '25060',
+        'sslmode': 'require',
     }
 }
 
