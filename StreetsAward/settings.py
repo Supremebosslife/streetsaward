@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'streetsaward.com',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'streetsaward.com', 'streetsaward-w5df9.ondigitalocean.app']
 
 INSTALLED_APPS = [
     'voting',
