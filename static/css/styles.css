@@ -1,0 +1,138 @@
+/* styles.css */
+
+body {
+    background-color: #f5f5e8;
+    text-align: center;
+}
+
+h2 {
+    color: #AD8003;
+}
+
+form {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.registration-link {
+    background-color: black;
+    color: #FAF9D0;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 15px;
+
+}
+
+.error-message {
+    color: red;
+    margin-top: -10px; /* Adjust margin as needed */
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+button {
+    background-color: #AD8003;
+    color: #FFFFFF;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.link {
+    background-color: black;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+/* Added styles for category-container */
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.category-row {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+.category-item {
+    text-align: center;
+}
+
+.category-icon {
+    font-size: 48px;
+    margin: 10px;
+    color: #AD8003;
+}
+
+/* Remaining styles */
+
+.user-details {
+    text-align: left;
+    padding: 20px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #AD8003;
+}
+
+.detail-value {
+    color: #AD8003;
+}
+
+.separator {
+    border-bottom: 1px solid #AD8003;
+    margin: 20px 0;
+}
+
+.profile-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-button {
+    text-decoration: none;
+    color: #7e600c;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #AD8003;
+}
+
+.share-links {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.share-links a {
+    color: rgb(125, 10, 10);
+    font-weight: bold;
+    text-decoration: underline;
+    margin-right: 10px;
+}
