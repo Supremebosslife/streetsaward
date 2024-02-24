@@ -169,20 +169,21 @@ class RecentVotesView(LoginRequiredMixin, View):
 class DeleteAccountView(LoginRequiredMixin, View):
     template_name = 'delete_account.html'
 
-    @login_required
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
-    @login_required
     def post(self, request, *args, **kwargs):
-        # Perform account deletion logic
-        request.user.delete()
-        
-        # Logout the user after deletion
-        logout(request)
+        if request.user.is_authenticated:  
+            
+            request.user.delete()
+            
+            # Logout the user after deletion
+            logout(request)
 
-        messages.success(request, 'Your account has been successfully deleted.')
-        return redirect('home')
+            messages.success(request, 'Your account has been successfully deleted.')
+            return redirect('home')
+        else:
+            return redirect('login')
 
 class ResultCategoryView(View):
     template_name = 'voting_resultpage.html'
