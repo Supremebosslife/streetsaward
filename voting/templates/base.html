@@ -189,11 +189,11 @@
         </div>
     </div>
     </header>
-    <!-- Clickable Flyer -->
+    <div style="text-align: center;">
     <a href="{% url 'category_vote' 'football' %}">
         <img src="{% static 'images/football1.png' %}" alt="Clickable Flyer" style="max-width: 100%; height: auto;">
     </a>
-    <main>
+    </div>
         {% if user.is_authenticated %}
         <hr>
         <h2>Select Category to Vote:</h2>
