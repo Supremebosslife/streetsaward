@@ -7,7 +7,7 @@
     <div class="nominee-container">
         {% for nominee in nominees %}
             <div class="nominee" onclick="selectNominee('{{ nominee.nominee_name }}')">
-                <img src="{{ nominee.image.url }}" alt="{{ nominee.nominee_name }}" class="nominee-img">
+                <img src="{% static nominee.image %}" alt="{{ nominee.nominee_name }}" class="nominee-img">
                 <p class="nominee-name">{{ nominee.nominee_name }}</p>
             </div>
         {% endfor %}
