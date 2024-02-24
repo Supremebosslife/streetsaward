@@ -167,7 +167,7 @@ class RecentVotesView(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 class DeleteAccountView(LoginRequiredMixin, View):
-    template_name = 'delete_account.html'
+    template_name = 'registration/delete_account.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
