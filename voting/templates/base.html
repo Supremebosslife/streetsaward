@@ -231,9 +231,7 @@
             {% endblock %}
         {% endif %}
 
-        {% block content %}
-            {% cookie_consent_banner %}
-        {% endblock %}
+        {% block content %}{% endblock %}
         {% include 'bottom_bar.html' with categories=categories %}
                     <hr>
         <div>
@@ -273,7 +271,7 @@
         <p>Born in Nigeria in the late 1960s, Afrobeat is a fusion of traditional African rhythms, jazz, funk, and highlife music. Spearheaded by the legendary Fela Kuti, Afrobeat served as a powerful tool for social and political activism, challenging corruption and oppression while celebrating the rich cultural heritage of the continent.</p>
     </div>
     </main>
-
+    {% cookie_consent_banner %}
 </body>
 
 </html>
