@@ -1,4 +1,3 @@
-<!-- bottom_bar.html -->
 {% if user.is_authenticated %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <style>
@@ -20,6 +19,10 @@
             color: black;
             background-color: #f5f5e8;
         }
+
+        .logout-form {
+            display: none; /* Hide the form initially */
+        }
     </style>
 
     <div class="bottom-bar">
@@ -32,6 +35,13 @@
         <a href="{% url 'select_category' %}">
             <i class="fas fa-table"></i>
         </a>
+        <!-- Logout Form -->
+        <form class="logout-form" method="post" action="{% url 'custom-logout' %}">
+            {% csrf_token %}
+            <button type="submit" style="background-color: transparent; border: none; cursor: pointer;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </form>
         <a href="#" onclick="confirmLogout()">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -41,8 +51,8 @@
         function confirmLogout() {
             var confirmation = confirm("Are you sure you want to log out?");
             if (confirmation) {
-                // If the user clicks 'OK' in the confirmation dialog, redirect to the logout URL
-                window.location.href = "{% url 'custom-logout' %}";
+                // If the user clicks 'OK' in the confirmation dialog, submit the logout form
+                document.querySelector('.logout-form').submit();
             } else {
                 // If the user clicks 'Cancel', do nothing
                 // You can add additional handling here if needed

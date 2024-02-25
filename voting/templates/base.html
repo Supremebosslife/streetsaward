@@ -164,6 +164,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header-container">
         <!-- Logo on the left -->
@@ -178,12 +179,16 @@
                 <div class="dropdown-content">
                     {% if user.is_authenticated %}
                         <a href="{% url 'profile' %}">Profile</a>
-                        <a href="{% url 'custom-logout' %}">Logout</a>
-                        <a href="{% url 'about_us' %}">About Us</a>
+                        <!-- Logout Form -->
+                        <form method="post" action="{% url 'custom-logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
                     {% else %}
                         <a href="{% url 'custom-login' %}">Login</a>
                         <a href="{% url 'signup' %}">Signup</a>
-                        <a href="{% url 'about_us' %}">About Us</a>
+                    {% endif %}
+                    <a href="{% url 'about_us' %}">About Us</a>
                     {% endif %}
                 </div>
             </div>

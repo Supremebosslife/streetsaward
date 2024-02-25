@@ -24,7 +24,10 @@
             <a href="{% url 'recent_votes' %}" class="profile-button">Recent Votes</a>
             <a href="{% url 'password_change' %}" class="profile-button">Change Password</a>
             <a href="{% url 'delete_account' %}" class="profile-button">Delete Account</a>
-            <a href="#" onclick="confirmLogout()" class="profile-button">Logout</a>
+            <form method="post" action="{% url 'custom-logout' %}">
+                {% csrf_token %}
+            <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
 
