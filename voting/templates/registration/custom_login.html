@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 {% include 'logo.html' %}
 {% block content %}
 <style>
@@ -31,9 +31,16 @@
         margin-top: 15px;
 
     }
+    .cookie-policy-notice {
+        text-align: center;
+        margin-top: 15px;
+    }
 </style>
 
 <h2>Login</h2>
+<!-- Add the notice here -->
+<p class="cookie-policy-notice">Using our platform means you have accepted our cookie policy, agreed to our privacy policy, and terms/conditions. You can read them <a href="{% url 'about_us' %}">here</a>.</p>
+
 <form method="post" action="{% url 'custom-login' %}">
     {% csrf_token %}
     {% if form.errors %}
