@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fontawesomefree',
+    'cookie_consent',
 ]
 
 MIDDLEWARE = [
@@ -30,6 +31,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+COOKIE_CONSENT_NAME = 'cookie_consent'  # Cookie name for storing user consent
+COOKIE_CONSENT_EXPIRY = 365  # Cookie expiry in days
+COOKIE_CONSENT_LOG_ENABLED = True  # Enable logging of user consent
+COOKIE_CONSENT_HIDE_AFTER = 0  # Hide the banner after user interaction (0 to disable)
+
 
 AUTHENTICATION_BACKENDS = [
     'voting.backends.EmailBackend',

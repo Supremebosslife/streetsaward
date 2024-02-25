@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('voting.urls')),
+    path('cookie-consent/', include('cookie_consent.urls')),
 ]
 
 if settings.DEBUG:
