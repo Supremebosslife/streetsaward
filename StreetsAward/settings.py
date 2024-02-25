@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sadatabase', 
         'USER': 'sadatabase', 
-        'PASSWORD': 'config('DB_PASSWORD')',
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST': 'app-4e254123-e543-4faf-a56a-28d10697dba0-do-user-15871549-0.c.db.ondigitalocean.com',
         'PORT': '25060',
         'OPTIONS': {
