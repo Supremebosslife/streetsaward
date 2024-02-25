@@ -5,6 +5,7 @@ from .views import CustomUserCreationView, ResultCategoryView, RegistrationSucce
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from .views import (
     about_us,
+    about_streetsaward,
     privacy_policy,
     terms_and_conditions,
     accessibility_policy,
@@ -37,6 +38,7 @@ urlpatterns = [
     path('registration_success/', RegistrationSuccessView.as_view(), name='registration_success'),
     path('about_us/', about_us, name='about_us'),
     path('privacy-policy/', privacy_policy, name='privacy_policy'),
+    path('about_streetsaward/', privacy_policy, name='about_streetsaward'),
     path('terms-and-conditions/', terms_and_conditions, name='terms_and_conditions'),
     path('accessibility-policy/', accessibility_policy, name='accessibility_policy'),
     path('security-policy/', security_policy, name='security_policy'),

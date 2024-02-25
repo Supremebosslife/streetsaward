@@ -245,3 +245,6 @@ def community_guidelines(request):
 
 def cookie_policy(request):
     return render(request, 'about_us/cookie_policy.html')
+
+def about_streetsaward(request):
+    return render(request, 'about_us/about_streetsaward.html')

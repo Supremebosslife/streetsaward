@@ -271,10 +271,20 @@
     </div>
     </main>
 <script>
-        window.onload = function() {
+    window.onload = function() {
+        // Check if the cookie exists
+        if (!document.cookie.includes('popupShown')) {
+            // Display the popup
             alert("Using our platform means you have accepted our cookie policy, agreed to our privacy policy, and terms/conditions.");
-        };
-    </script>
+
+            // Set a cookie to indicate that the popup has been shown
+            var currentDate = new Date();
+            var expirationDate = new Date(currentDate);
+            expirationDate.setDate(currentDate.getDate() + 1); // Expiration date set to one day ahead
+            document.cookie = 'popupShown=true; expires=' + expirationDate.toUTCString() + '; path=/';
+        }
+    };
+</script>
 </body>
 
 </html>
