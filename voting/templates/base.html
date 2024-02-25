@@ -231,9 +231,10 @@
             {% endblock %}
         {% endif %}
 
-        {% block content %}{% endblock %}
+        {% block content %}
+            {% cookie_consent_banner %}
+        {% endblock %}
         {% include 'bottom_bar.html' with categories=categories %}
-        {% cookie_consent_banner %}
                     <hr>
         <div>
         <!-- Football -->
