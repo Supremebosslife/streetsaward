@@ -3,8 +3,6 @@
 
 # Ignore other files or directories (if needed)
 __pycache__/
-db.sqlite3
-media/
 
 # Ignore virtual environment
 venv/
@@ -12,5 +10,3 @@ venv/
 # Ignore database backups
 backup.json
 
-# Ignore generated static files
-staticfiles/
